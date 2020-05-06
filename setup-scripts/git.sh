@@ -1,14 +1,14 @@
 #!/bin/bash
 
-name = $1
-email = $2
+name=$1
+email=$2
 
 #Git
-git config --global user.name $name
-git config --global user.email $email
+git config --global user.name "$name"
+git config --global user.email "$email"
 
 # SSH key for GitHub
-ssh-keygen -t rsa -b 4096 -C $email
+ssh-keygen -t rsa -b 4096 -C "$email"
 
 eval "$(ssh-agent -s)"
 

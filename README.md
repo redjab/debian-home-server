@@ -12,6 +12,10 @@ Navigate to `git/debian-home-server/setup-scripts`
 
 Run `sudo install.sh`
 
+Run `sudo auto-start.sh`
+
 ## Unifi Controller
 
 ## Home Assistant
+
+Go to `/home-assistant` and run `docker-compose up -d`
