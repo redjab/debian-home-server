@@ -17,9 +17,12 @@ cat ~/.ssh/id_rsa.pub
 # Copy to GitHub
 
 # Start Git
+mkdir git
 cd git
+mkdir debian-home-server
+cd debian-home-server
+
 git init
-git remote add origin https://github.com/redjab/debian-home-server.git
 git remote add origin git@github.com:redjab/debian-home-server.git
-git branch --set-upstream-to=origin/master master
+git checkout -b master
 git pull

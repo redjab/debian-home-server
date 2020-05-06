@@ -20,7 +20,7 @@ add-apt-repository \
 
 # SSH Server
 
-sudo apt-get install openssh-server
+apt-get install openssh-server
 
 ssh localhost
 
