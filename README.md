@@ -2,7 +2,7 @@
 
 ## Setting up Debian
 
-Start SSH Server by running commands in pre.sh
+Start SSH Server by running commands in `pre.sh`
 
 Copy `git.sh` to Debian
 
