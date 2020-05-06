@@ -1,3 +1,5 @@
+#!/bin/bash
+
 name = $1
 email = $2
 
@@ -13,8 +15,7 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 
 cat ~/.ssh/id_rsa.pub
-
-# Copy to GitHub
+# Copy content of above command to GitHub
 
 # Start Git
 mkdir git
@@ -26,6 +27,3 @@ git init
 git remote add origin git@github.com:redjab/debian-home-server.git
 git checkout -b master
 git pull
-
-# Set script permission
-sudo chmod +x install.sh

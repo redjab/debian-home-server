@@ -1,13 +1,6 @@
 #!/bin/bash
 
-# SSH Server
-apt-get -y install openssh-server
-
-service ssh start
-
 #Install docker
-apt-get update
-
 apt-get -y install \
     apt-transport-https \
     ca-certificates \
