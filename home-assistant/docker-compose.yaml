@@ -5,8 +5,7 @@ services:
     image: homeassistant/home-assistant:stable
     volumes:
       - /persist/home-assistant:/config
-    environment:
-      - TZ=America/Denver
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     network_mode: host
     # devices:
