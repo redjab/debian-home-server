@@ -15,3 +15,7 @@ Navigate to `git/debian-home-server/setup-scripts`
 Run `sudo chmod +x install.sh`
 
 Run `sudo install.sh`
+
+## Unifi Controller
+
+## Home Assistant
