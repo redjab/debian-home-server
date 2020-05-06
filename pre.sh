@@ -26,3 +26,6 @@ git init
 git remote add origin git@github.com:redjab/debian-home-server.git
 git checkout -b master
 git pull
+
+# Set script permission
+sudo chmod +x install.sh

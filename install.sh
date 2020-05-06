@@ -1,9 +1,14 @@
 #!/bin/bash
 
+# SSH Server
+apt-get -y install openssh-server
+
+service ssh start
+
 #Install docker
 apt-get update
 
-apt-get install \
+apt-get -y install \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -17,11 +22,4 @@ add-apt-repository \
    $(lsb_release -cs) \
    stable"
 
-
-# SSH Server
-
-apt-get install openssh-server
-
-ssh localhost
-
-
+ 
