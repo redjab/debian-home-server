@@ -1,8 +1,13 @@
 #!/bin/bash
 
+# as root
 apt-get update
 
-# SSH Server
-apt-get -y install openssh-server
+su -
 
-service ssh start
+usermod -aG sudo redjab
+
+su redjab
+
+# SSH Server
+sudo apt-get -y install openssh-server

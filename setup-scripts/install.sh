@@ -24,8 +24,6 @@ curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compo
 
 chmod +x /usr/local/bin/docker-compose
 
-service docker start
-
 # Optional: Install Google Cloud SDK
 if [ -n "$install_gcp" ]
 then 
