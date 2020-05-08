@@ -25,7 +25,9 @@ curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compo
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Create docker group
-sudo groupadd docker
+if [ $(getent group docker) ]; then
+    sudo groupadd docker
+fi
 
 sudo usermod -aG docker $USER
 
