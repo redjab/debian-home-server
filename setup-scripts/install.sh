@@ -25,22 +25,20 @@ curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compo
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Create docker group
-if [ $(getent group docker) ]; then
+if [ ! $(getent group docker) ]; then
     sudo groupadd docker
 fi
 
 sudo usermod -aG docker $USER
 
-newgrp docker
-
 # Optional: Install Google Cloud SDK
 if [ -n "$install_gcp" ]
 then 
-    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 
     sudo apt-get -y install apt-transport-https ca-certificates gnupg
 
-    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 
     sudo apt-get update && sudo apt-get -y install google-cloud-sdk
 
@@ -49,3 +47,5 @@ then
 fi
 
 # gsutil cp [OBJECT_LOCATION] gs://unifi-minh
+
+newgrp docker
