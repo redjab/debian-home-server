@@ -1,4 +1,4 @@
 #!/bin/bash
 
-systemctl enable ssh
-systemctl enable docker
+sudo systemctl enable ssh
+sudo systemctl enable docker
