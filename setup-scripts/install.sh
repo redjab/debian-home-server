@@ -42,7 +42,7 @@ then
 
     sudo apt-get update && sudo apt-get -y install google-cloud-sdk
 
-    sudo gcloud init --console-only
+    gcloud init --console-only
     # Authorize using url from above command
 fi
 
