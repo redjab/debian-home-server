@@ -42,7 +42,8 @@ then
 
     sudo apt-get update && sudo apt-get -y install google-cloud-sdk
 
-    gcloud init --console-only
+    gcloud auth activate-service-account --key-file=/home/$USER/git/debian-home-server/secrets/debian-home-server-8edd28c6a71c.json
+    gcloud config set project debian-home-server
     # Authorize using url from above command
 fi
 
