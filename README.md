@@ -14,4 +14,6 @@ Run `install.sh`
 
 Run `docker-start.sh`
 
+Run `after.sh`
+
 Run `sudo auto-start.sh`
