@@ -19,6 +19,7 @@ services:
       - PGID=${PGID}
     volumes:
       - /persist/unifi-controller:/config
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 3478:3478/udp
       - 10001:10001/udp
@@ -28,4 +29,26 @@ services:
       - 8843:8843
       - 8880:8880
       - 6789:6789
+    restart: unless-stopped
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+    environment:
+      WEBPASSWORD=${PIHOLE_WEBPASSWORD}
+    # Volumes store your data between container upgrades
+    volumes:
+      - /persist/pihole/config:/etc/pihole/
+      - /persist/pihole/dnsmasq.d/:/etc/dnsmasq.d/
+      - /etc/localtime:/etc/localtime:ro
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    cap_add:
+      - NET_ADMIN
     restart: unless-stopped

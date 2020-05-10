@@ -12,7 +12,7 @@ Navigate to `git/debian-home-server/setup-scripts`
 
 Run `install.sh`
 
-Run `docker-start.sh`
+Run `docker-start.sh <pihole-webpassword>`
 
 Run `after.sh`
 
