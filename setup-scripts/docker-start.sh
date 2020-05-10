@@ -1,3 +1,3 @@
 #!/bin/bash
 
-UID=$(id -u) GID=$(id -g) docker-compose up
+PUID=$(id -u) PGID=$(id -g) docker-compose up

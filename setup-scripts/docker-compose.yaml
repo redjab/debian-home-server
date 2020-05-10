@@ -15,8 +15,8 @@ services:
     container_name: unifi-controller
     image: linuxserver/unifi-controller:latest
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${PUID}
+      - PGID=${PGID}
     volumes:
       - /persist/unifi-controller:/config
     ports:
