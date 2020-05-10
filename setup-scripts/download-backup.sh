@@ -18,4 +18,5 @@ if [ -n "$overwrite_ha" ]
 then
     cp -Rf $ha_dir/* /persist/home-assistant
     rm -rf $ha_dir
+    docker restart home-assistant
 fi
