@@ -6,7 +6,7 @@ Start SSH Server by running commands in `pre.sh`
 
 Copy `git.sh` to Debian
 
-Run `./git.sh <git-username> <git-email>`
+Run `./git.sh <git-email>`
 
 Navigate to `git/debian-home-server/setup-scripts`
 
