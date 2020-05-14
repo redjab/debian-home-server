@@ -5,6 +5,9 @@ email=$1
 #Git
 sudo apt-get -y install git
 
+# Force config file creation
+git config --edit --global
+
 git config --global user.name "$USER"
 git config --global user.email "$email"
 
