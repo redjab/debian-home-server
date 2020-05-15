@@ -29,17 +29,3 @@ services:
       - 8880:8880
       - 6789:6789
     restart: unless-stopped
-  vscode:
-    image: linuxserver/code-server
-    container_name: vscode
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - PASSWORD=${VSCODE_PASSWORD}
-      - SUDO_PASSWORD=${VSCODE_SUDO_PASSWORD}
-    volumes:
-      - /persist/vscode:/config
-      - /persist/home-assistant:/config/workspace
-    ports:
-      - 8442:8443
-    restart: unless-stopped
