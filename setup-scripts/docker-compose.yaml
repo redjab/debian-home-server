@@ -39,6 +39,7 @@ services:
       - SUDO_PASSWORD=${VSCODE_SUDO_PASSWORD}
     volumes:
       - /persist/vscode:/config
+      - /persist/home-assistant:/config/workspace
     ports:
       - 8442:8443
     restart: unless-stopped
