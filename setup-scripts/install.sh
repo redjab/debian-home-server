@@ -42,12 +42,12 @@ then
 
     sudo apt-get update && sudo apt-get -y install google-cloud-sdk
 
-    gcloud auth activate-service-account --key-file=/home/$USER/git/debian-home-server/secrets/debian-home-server-8edd28c6a71c.json
+    gcloud auth activate-service-account --key-file=$HOME/git/debian-home-server/secrets/debian-home-server-8edd28c6a71c.json
     gcloud config set project debian-home-server
 
     # cron job for back up
     crontab -e
-    cronjob="0 2 * * sat /home/$USER/git/debian-home-server/setup-scripts/backup.sh" 
+    cronjob="0 2 * * sat $HOME/git/debian-home-server/setup-scripts/backup.sh" 
     (crontab -u $USER -l; echo "$cronjob" ) | crontab -u $USER -
 
     # turns on cron log

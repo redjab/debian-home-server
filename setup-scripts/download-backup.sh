@@ -2,8 +2,8 @@
 
 overwrite_ha=$1
 
-ha_dir="/home/$USER/backup_download/home-assistant"
-unifi_dir="/home/$USER/backup_download/unifi-controller"
+ha_dir="$HOME/backup_download/home-assistant"
+unifi_dir="$HOME/backup_download/unifi-controller"
 
 mkdir -p $ha_dir
 mkdir -p $unifi_dir

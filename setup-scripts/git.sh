@@ -18,11 +18,11 @@ ssh-keygen -t rsa -b 4096 -C "$email"
 
 eval "$(ssh-agent -s)"
 
-ssh-add /home/$USER/.ssh/id_rsa
+ssh-add $HOME/.ssh/id_rsa
 
 echo 'eval `keychain --eval id_rsa`' >> $HOME/.bashrc
 
-cat /home/$USER/.ssh/id_rsa.pub
+cat $HOME/.ssh/id_rsa.pub
 # Copy content of above command to GitHub
 
 read -n1 -rsp $'Press any key to continue or Ctrl+C to exit...\n'
