@@ -16,7 +16,7 @@ gsutil -m rsync -r $latest_unifi $unifi_dir
 
 if [ -n "$overwrite_ha" ]
 then
-    cp -Rf $ha_dir/* /persist/home-assistant
+    cp -Rf $ha_dir/ /persist/
     rm -rf $ha_dir
     docker restart home-assistant
 fi
