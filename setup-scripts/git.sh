@@ -5,7 +5,7 @@ email=$1
 #Git
 sudo apt-get -y install git
 
-sudo apt-get install keychain
+sudo apt-get -y install keychain
 
 # Force config file creation
 git config --edit --global
