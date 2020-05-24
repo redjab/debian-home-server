@@ -29,3 +29,23 @@ services:
       - 8880:8880
       - 6789:6789
     restart: unless-stopped
+  letsencrypt:
+    container_name: letsencrypt
+    image: linuxserver/letsencrypt:latest
+    restart: unless-stopped
+    cap_add:
+    - NET_ADMIN
+    volumes:
+    - /persist/letsencrypt:/config
+    - /etc/localtime:/etc/localtime:ro
+    environment:
+    - PUID=${PUID}
+    - PGID=${PGID}
+    - EMAIL=${EMAIL}
+    - URL=${DOMAIN}
+    - SUBDOMAINS=wildcard
+    - VALIDATION=dns
+    - DNSPLUGIN=cloudflare
+    ports:
+    - 80:80
+    - 443:443
