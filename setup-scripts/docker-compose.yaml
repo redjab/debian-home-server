@@ -49,3 +49,14 @@ services:
     ports:
     - 80:80
     - 443:443
+  nodered:
+    container_name: node-red
+    restart: unless-stopped
+    image: nodered/node-red:latest
+    environment:
+    - TZ=${TZ}
+    user: root
+    volumes:
+      - /persist/node-red:/data
+    ports:
+      - 1880:1880
