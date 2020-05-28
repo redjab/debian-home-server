@@ -3,6 +3,7 @@ services:
   homeassistant:
     container_name: home-assistant
     image: homeassistant/home-assistant:stable
+    user: ${CURRENT_USER}
     volumes:
       - /persist/home-assistant:/config
       - /etc/localtime:/etc/localtime:ro
@@ -17,6 +18,7 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
+    user: ${CURRENT_USER}
     volumes:
       - /persist/unifi-controller:/config
     ports:
@@ -46,6 +48,7 @@ services:
     - SUBDOMAINS=wildcard
     - VALIDATION=dns
     - DNSPLUGIN=cloudflare
+    user: ${CURRENT_USER}
     ports:
     - 80:80
     - 443:443
@@ -55,7 +58,7 @@ services:
     image: nodered/node-red:latest
     environment:
     - TZ=${TZ}
-    user: root
+    user: ${CURRENT_USER}
     volumes:
       - /persist/node-red:/data
     ports:
