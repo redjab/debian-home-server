@@ -8,6 +8,11 @@ services:
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     network_mode: host
+    depends_on:
+      - unifi-controller
+      - letsencrypt
+      - nodered
+      - mqtt-broker
     # devices:
     #   - /dev/ttyUSB0:/dev/ttyUSB0
     #   - /dev/ttyUSB1:/dev/ttyUSB1
