@@ -2,6 +2,9 @@
 
 install_gcp=$1;
 
+# Install dig
+sudo apt-get install -y dnsutils
+
 # Install docker
 sudo apt-get -y install \
     apt-transport-https \
