@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   homeassistant:
     container_name: home-assistant
@@ -13,9 +13,9 @@ services:
       - letsencrypt
       - nodered
       - mqtt-broker
-    # devices:
-    #   - /dev/ttyUSB0:/dev/ttyUSB0
-    #   - /dev/ttyUSB1:/dev/ttyUSB1
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+      - /dev/ttyUSB1:/dev/ttyUSB1
   unifi-controller:
     container_name: unifi-controller
     image: linuxserver/unifi-controller:latest
@@ -33,6 +33,12 @@ services:
       - 8843:8843
       - 8880:8880
       - 6789:6789
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+        reservations:
+          memory: 500M
     restart: unless-stopped
   letsencrypt:
     container_name: letsencrypt
