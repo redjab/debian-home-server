@@ -72,6 +72,7 @@ services:
       - 1880:1880
   mqtt-broker:
     container_name: mqtt-broker
+    restart: unless-stopped
     image: eclipse-mosquitto
     volumes:
       - /persist/mosquitto:/mosquitto
