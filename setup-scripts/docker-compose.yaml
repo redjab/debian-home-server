@@ -10,7 +10,6 @@ services:
     network_mode: host
     depends_on:
       - unifi-controller
-      - letsencrypt
       - nodered
       - mqtt-broker
     devices:
@@ -44,6 +43,9 @@ services:
     container_name: letsencrypt
     image: linuxserver/letsencrypt:latest
     restart: unless-stopped
+    depends_on:
+      - unifi-controller
+      - homeassistant
     cap_add:
     - NET_ADMIN
     volumes:
