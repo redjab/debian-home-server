@@ -41,7 +41,7 @@ services:
     restart: unless-stopped
   letsencrypt:
     container_name: letsencrypt
-    image: linuxserver/letsencrypt:latest
+    image: linuxserver/swag:latest
     restart: unless-stopped
     depends_on:
       - unifi-controller
@@ -80,3 +80,17 @@ services:
       - /persist/mosquitto:/mosquitto
     ports:
       - 1883:1883
+  octoprint:
+    container_name: octoprint
+    image: octoprint/octoprint
+    restart: unless-stopped
+    ports:
+      - 81:80
+    devices:
+     - /dev/ttyUSB2:/dev/ttyUSB2
+     - /dev/video0:/dev/video0
+    volumes:
+      - /persist/octoprint:/octoprint
+    environment:
+     - ENABLE_MJPG_STREAMER=true
+    
