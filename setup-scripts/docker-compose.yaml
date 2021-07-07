@@ -13,8 +13,8 @@ services:
       - nodered
       - mqtt-broker
     devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
-      - /dev/ttyUSB1:/dev/ttyUSB1
+      - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_C1302060-if00-port0:/dev/ttyUSB0
+      - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_C1302060-if01-port0:/dev/ttyUSB1
   unifi-controller:
     container_name: unifi-controller
     image: linuxserver/unifi-controller:latest
@@ -87,7 +87,7 @@ services:
     ports:
       - 81:80
     devices:
-     - /dev/ttyUSB2:/dev/ttyUSB2
+     - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/ttyUSB2
      - /dev/video0:/dev/video0
     volumes:
       - /persist/octoprint:/octoprint
