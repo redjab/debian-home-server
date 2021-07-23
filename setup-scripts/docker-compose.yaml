@@ -101,7 +101,7 @@ services:
       - 81:80
     devices:
      - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/ttyUSB2
-     - /dev/video0:/dev/video0
+     - /dev/v4l/by-id/usb-HD_Web_Camera_HD_Web_Camera_Ucamera001-video-index0:/dev/video0
     volumes:
       - /persist/octoprint:/octoprint
     environment:
