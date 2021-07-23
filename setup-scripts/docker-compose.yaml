@@ -12,9 +12,22 @@ services:
       - unifi-controller
       - nodered
       - mqtt-broker
+      - zwavejs
+    devices:
+      - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_C1302060-if01-port0:/dev/ttyUSB1
+  zwavejs:
+    container_name: zwavejs
+    image: zwavejs/zwavejs2mqtt:latest
+    volumes:
+      - /persist/zwavejs:/usr/src/app/store
+    environment:
+    - TZ=${TZ}
+    restart: unless-stopped
     devices:
       - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_C1302060-if00-port0:/dev/ttyUSB0
-      - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_C1302060-if01-port0:/dev/ttyUSB1
+    ports:
+      - 8091:8091
+      - 3000:3000
   unifi-controller:
     container_name: unifi-controller
     image: linuxserver/unifi-controller:latest
