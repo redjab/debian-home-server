@@ -106,4 +106,27 @@ services:
       - /persist/octoprint:/octoprint
     environment:
      - ENABLE_MJPG_STREAMER=true
-    
+  frigate:
+    container_name: frigate
+    restart: unless-stopped
+    image: blakeblackshear/frigate:stable-amd64
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev/dri/renderD128
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /persist/frigate/config.yaml:/config/config.yml:ro
+      - /persist/frigate/media:/media/frigate
+      - type: tmpfs # Optional: 250MB memory, reduces SSD/SD Card wear
+        target: /tmp/cache
+        tmpfs:
+          size: 250000000
+    environment:
+      - LIBVA_DRIVER_NAME=${LIBVA_DRIVER_NAME}
+      - FRIGATE_RTSP_USER=${FRIGATE_RTSP_USER}
+      - FRIGATE_RTSP_PASSWORD=${FRIGATE_RTSP_PASSWORD}
+      - FRIGATE_RTSP_IP=${FRIGATE_RTSP_IP}
+      - FRIGATE_MQTT_PASSWORD=${FRIGATE_MQTT_PASSWORD}
+    ports:
+      - "5000:5000"
+      - "1935:1935" # RTMP feeds
