@@ -7,3 +7,5 @@ gsutil -m rsync -r -x ".*(\/)?\.git\/.*|\.npm\/.*|node_modules/|lib/|.*\.backup$
 gsutil -m rsync -r /persist/mosquitto gs://debian-home-server.appspot.com/mosquitto/$(date +%Y-%m-%d-%H-%M-%S)
 gsutil -m rsync -r /persist/.vscode gs://debian-home-server.appspot.com/.vscode/$(date +%Y-%m-%d-%H-%M-%S)
 gsutil -m rsync -r  -x "logs|generated|uploads" /persist/octoprint/octoprint gs://debian-home-server.appspot.com/octoprint/octoprint/$(date +%Y-%m-%d-%H-%M-%S)
+gsutil -m rsync -r  -x "logs|generated|uploads" /persist/octoprint/octoprint gs://debian-home-server.appspot.com/octoprint/octoprint/$(date +%Y-%m-%d-%H-%M-%S)
+gsutil -m rsync -r  -x "media" /persist/frigate gs://debian-home-server.appspot.com/frigate/$(date +%Y-%m-%d-%H-%M-%S)
