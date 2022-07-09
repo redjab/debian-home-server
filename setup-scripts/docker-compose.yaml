@@ -15,6 +15,16 @@ services:
       - zwavejs
     devices:
       - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_C1302060-if01-port0:/dev/ttyUSB1
+  esphome:
+    container_name: esphome
+    image: esphome/esphome
+    command: dashboard --username ${ESPHOME_USERNAME} --password ${ESPHOME_PASSWORD} /config
+    volumes:
+      - /persist/esphome/config:/config
+      - /persist/esphome/cache:/cache
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    network_mode: host
   zwavejs:
     container_name: zwavejs
     image: zwavejs/zwavejs2mqtt:latest
