@@ -13,8 +13,8 @@ services:
       - nodered
       - mqtt-broker
       - zwavejs
-    devices:
-      - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_C1302060-if01-port0:/dev/ttyUSB1
+      - zigbee2mqtt
+
   esphome:
     container_name: esphome
     image: esphome/esphome
@@ -25,6 +25,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     network_mode: host
+
   zwavejs:
     container_name: zwavejs
     image: zwavejs/zwavejs2mqtt:latest
@@ -38,6 +39,25 @@ services:
     ports:
       - 8091:8091
       - 3000:3000
+
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    restart: unless-stopped
+    volumes:
+      - /persist/zigbee2mqtt:/app/data
+      - /run/udev:/run/udev:ro
+    ports:
+      - 8082:8080
+    environment:
+    - TZ=${TZ}
+    - ZIGBEE2MQTT_CONFIG_MQTT_USER=${ZIGBEE2MQTT_CONFIG_MQTT_USER}
+    - ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD=${ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD}
+    devices:
+      - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_C1302060-if01-port0:/dev/ttyUSB1
+    depends_on:
+      - mqtt-broker
+
   unifi-controller:
     container_name: unifi-controller
     image: linuxserver/unifi-controller:latest
@@ -62,6 +82,7 @@ services:
         reservations:
           memory: 500M
     restart: unless-stopped
+
   letsencrypt:
     container_name: letsencrypt
     image: linuxserver/swag:latest
@@ -85,6 +106,7 @@ services:
     ports:
     - 80:80
     - 443:443
+
   nodered:
     container_name: node-red
     restart: unless-stopped
@@ -95,6 +117,7 @@ services:
       - /persist/node-red:/data
     ports:
       - 1880:1880
+
   mqtt-broker:
     container_name: mqtt-broker
     restart: unless-stopped
@@ -103,6 +126,7 @@ services:
       - /persist/mosquitto:/mosquitto
     ports:
       - 1883:1883
+
   octoprint:
     container_name: octoprint
     image: octoprint/octoprint
@@ -116,10 +140,11 @@ services:
       - /persist/octoprint:/octoprint
     environment:
      - ENABLE_MJPG_STREAMER=true
+
   frigate:
     container_name: frigate
     restart: unless-stopped
-    image: blakeblackshear/frigate:stable-amd64
+    image: blakeblackshear/frigate:stable
     devices:
       - /dev/bus/usb:/dev/bus/usb
       - /dev/dri/renderD128
@@ -136,7 +161,7 @@ services:
       - FRIGATE_RTSP_USER=${FRIGATE_RTSP_USER}
       - FRIGATE_RTSP_PASSWORD=${FRIGATE_RTSP_PASSWORD}
       - FRIGATE_RTSP_IP=${FRIGATE_RTSP_IP}
-      - FRIGATE_RTSP_IP_PET=${FRIGATE_RTSP_IP_PET}
+      - FRIGATE_RTSP_IP_LIVING_ROOM=${FRIGATE_RTSP_IP_LIVING_ROOM}
       - FRIGATE_MQTT_PASSWORD=${FRIGATE_MQTT_PASSWORD}
     ports:
       - "5000:5000"
